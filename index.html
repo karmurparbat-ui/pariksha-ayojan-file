@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>પ્રથમ સત્રાંત પરીક્ષા આયોજન</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root { --z:1; --primary: #0b2a5b; --accent: #ff9933; --green: #138808; --bg: #eef2f8; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: 'Hind Vadodara', 'Noto Sans Gujarati', Arial, sans-serif; font-weight: 600; background: var(--bg); color: #1b2433; padding: 0; }
+.container { max-width: 1000px; margin: 0 auto; padding: 15px; display: flex; flex-direction: column; align-items: center; }
+@media print { .no-print { display: none !important; } }
+.top-marquee { background: var(--primary); color: var(--accent); font-size: 1.4rem; font-weight: 700; padding: 8px 10px; border-bottom: 3px solid var(--green); }
+.bar { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; align-items: center; margin-bottom: 20px; background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); width: 100%; border: 1px solid #c9d3e3; }
+.bar button { padding: 12px 28px; border: 0; border-radius: 8px; color: #fff; font-family: inherit; font-weight: 700; font-size: 1.25rem; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.bar button:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
+.bar button.btn-print { background: #b3261e; }
+.bar button.btn-setup { background: #f59e0b; }
+.bar button.btn-fit { background: #3b82f6; }
+.bar .as { background: var(--green); display: inline-flex; align-items: center; gap: 10px; pointer-events: none; }
+.bar .as .dot { width: 12px; height: 12px; border-radius: 50%; background: #fff; animation: aspulse 2s infinite; }
+@keyframes aspulse { 0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.7); } 70% { box-shadow: 0 0 0 10px rgba(255,255,255,0); } 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); } }
+.asinfo { display: flex; gap: 15px; font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-top: 10px; }
+.asinfo span { background: #eaf0fb; padding: 5px 15px; border-radius: 20px; border: 1px solid #c9d3e3; }
+.setup-box { width: 100%; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 8px solid var(--primary); margin-bottom: 30px; }
+.setup-box h2 { text-align: center; color: var(--primary); margin-top: 0; font-size: 2.2rem; font-weight: 800; border-bottom: 2px dashed #cbd5e1; padding-bottom: 10px; }
+.setup-note { background: #fff7ed; color: #c2410c; padding: 15px; border-radius: 8px; font-size: 1.15rem; font-weight: 700; text-align: center; margin-bottom: 20px; border: 1px solid #fed7aa; }
+.s-grp { display: flex; align-items: center; margin-bottom: 15px; }
+.s-grp label { flex: 0 0 25%; font-size: 1.2rem; font-weight: 800; color: #1e293b; }
+.s-grp input { flex: 1; padding: 10px 15px; font-size: 1.25rem; border: 2px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-weight: 700; color: var(--primary); background: #f8fafc; transition: 0.2s; }
+.s-grp input:focus { outline: none; border-color: var(--accent); background: #fff; }
+.std-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
+.std-box { background: #f1f5f9; padding: 15px; border-radius: 10px; border: 1px solid #cbd5e1; text-align: center; }
+.std-box span { display: block; font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; color: var(--primary); }
+.std-box input { width: 100%; padding: 8px; font-size: 1.3rem; text-align: center; border: 2px solid var(--accent); border-radius: 8px; font-weight: 800; color: var(--green); }
+
+/* સેટઅપ પેજની વિગતવાર જાહેરાત */
+.small-ad-box { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border: 3px dashed #ff9933; padding: 20px; border-radius: 12px; text-align: center; margin-top: 30px; box-shadow: 0 4px 15px rgba(255, 153, 51, 0.3); animation: pulseGold 2s infinite alternate; }
+@keyframes pulseGold { 0% { box-shadow: 0 0 10px rgba(255, 153, 51, 0.3); } 100% { box-shadow: 0 0 25px rgba(255, 153, 51, 0.7); } }
+.small-ad-box h4 { margin: 0 0 10px; color: #b3261e; font-size: 1.4rem; }
+.small-ad-box p { margin: 5px 0; font-size: 1.1rem; color: #333; font-weight: 700; }
+.small-ad-box a { display: inline-block; margin-top: 10px; background: var(--green); color: #fff; padding: 8px 20px; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(19,136,8,0.4); transition: 0.3s; }
+.small-ad-box a:hover { transform: scale(1.05); background: #0f6a06; }
+
+/* છેલ્લા પેજની ધમાકેદાર જાહેરાત */
+.full-ad { position: relative; background: linear-gradient(135deg, #fffcf0, #fff7ed); border: 5px solid var(--accent); padding: 50px 30px; border-radius: 20px; margin: 60px auto; width: 100%; box-shadow: 0 10px 40px rgba(255,153,51,0.4); color: #1e293b; text-align: center; animation: blinkAd 1.5s infinite alternate; overflow: hidden; }
+.full-ad::before { content: "🔥 ખાસ જાહેરાત 🔥"; position: absolute; top: 0; left: 50%; transform: translateX(-50%); background: #b3261e; color: #fff; padding: 10px 40px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; font-weight: 800; font-size: 1.4rem; box-shadow: 0 4px 15px rgba(179,38,30,0.6); animation: blinkText 1s infinite; }
+@keyframes blinkAd { 0% { box-shadow: 0 0 20px 5px rgba(255, 153, 51, 0.5); border-color: var(--accent); } 100% { box-shadow: 0 0 50px 20px rgba(179, 38, 30, 0.7); border-color: #b3261e; } }
+@keyframes blinkText { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.1); text-shadow: 0 0 10px #fff; } }
+.full-ad h3 { color: #b3261e; font-size: 2.5rem; margin: 20px 0 10px; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+.full-ad h4 { color: var(--primary); font-size: 2rem; margin: 0 0 25px; }
+.full-ad .features { background: rgba(255,255,255,0.95); padding: 25px; border-radius: 15px; border: 3px dotted #ff9933; display: inline-block; text-align: left; font-size: 1.4rem; line-height: 2; font-weight: 700; margin-bottom: 25px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); width: 90%; max-width: 700px; }
+.full-ad a.btn { display: inline-block; background: #b3261e; color: #fff; padding: 18px 50px; border-radius: 50px; font-size: 1.8rem; font-weight: 800; text-decoration: none; box-shadow: 0 8px 20px rgba(179,38,30,0.5); transition: 0.3s; animation: pulseBtn 1s infinite alternate; }
+@keyframes pulseBtn { 0% { transform: scale(1); box-shadow: 0 8px 20px rgba(179,38,30,0.5); } 100% { transform: scale(1.08); box-shadow: 0 15px 30px rgba(179,38,30,0.8); background: #d32f2f; } }
+
+/* તરતા રહેતા ઇમોજી (Floating) */
+.float-icon { position: absolute; font-size: 2.5rem; opacity: 0.8; animation: float 3s ease-in-out infinite alternate; z-index: 0; }
+.icon-1 { top: 10%; left: 5%; animation-delay: 0s; }
+.icon-2 { top: 15%; right: 5%; animation-delay: 0.5s; }
+.icon-3 { bottom: 15%; left: 8%; animation-delay: 1s; }
+.icon-4 { bottom: 10%; right: 8%; animation-delay: 1.5s; }
+@keyframes float { 0% { transform: translateY(0) rotate(-10deg); } 100% { transform: translateY(-20px) rotate(10deg); } }
+
+.pgw { width: 100%; display: flex; flex-direction: column; align-items: center; margin-bottom: 30px; zoom: var(--z); }
+.pgw.lnd { zoom: var(--zl, var(--z)); }
+.print-page { position: relative; width: 210mm; height: 296mm; padding: 8mm; background: #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.15); overflow: hidden; border-radius: 4px; }
+.print-page.lnd { width: 297mm; height: 210mm; }
+.print-page::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 4mm; background: linear-gradient(90deg, var(--accent) 0 33%, var(--primary) 33% 66%, var(--green) 66%); }
+.frame { position: relative; height: 100%; width: 100%; border: 6px ridge var(--primary); outline: 3px solid var(--accent); outline-offset: -8px; display: flex; flex-direction: column; padding: 8mm; background-color: #fff; }
+.frame::before { content: ""; position: absolute; inset: -2px; pointer-events: none; background: linear-gradient(var(--accent),var(--accent)) 0 0/20px 4px, linear-gradient(var(--accent),var(--accent)) 0 0/4px 20px, linear-gradient(var(--accent),var(--accent)) 100% 0/20px 4px, linear-gradient(var(--accent),var(--accent)) 100% 0/4px 20px, linear-gradient(var(--accent),var(--accent)) 0 100%/20px 4px, linear-gradient(var(--accent),var(--accent)) 0 100%/4px 20px, linear-gradient(var(--accent),var(--accent)) 100% 100%/20px 4px, linear-gradient(var(--accent),var(--accent)) 100% 100%/4px 20px; background-repeat: no-repeat; }
+.pg-body { flex: 1; min-width: 0; min-height: 0; position: relative; overflow: hidden; }
+.sc { position: absolute; left: 0; top: 0; width: 100%; height: 100%; transform-origin: 0 0; transform: scale(var(--s, 1)); display: flex; flex-direction: column; }
+.in { display: flex; flex-direction: column; align-items: center; width: 100%; }
+.tools { width: 210mm; display: flex; flex-wrap: wrap; gap: 15px; align-items: center; justify-content: center; background: #fff; padding: 12px; border-radius: 8px; border: 1px solid #cbd5e1; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 10px; }
+.pgw.lnd .tools { width: 297mm; }
+.tools button { border: 0; border-radius: 6px; padding: 8px 16px; font-family: inherit; font-size: 1.05rem; font-weight: 700; cursor: pointer; background: var(--green); color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.tools button.rm { background: #b3261e; }
+.tools input { width: 70px; padding: 5px; border: 2px solid var(--primary); border-radius: 6px; text-align: center; font-size: 1.1rem; font-weight: bold; font-family: inherit; }
+.page-title-box { background: linear-gradient(135deg, var(--primary), #1a4a98); color: #fff; padding: 10px 20px; border-radius: 8px; width: 90%; border: 2px solid var(--accent); margin: 5px auto; text-align: center; }
+.page-title-box h1 { margin: 0; font-size: 2rem; font-weight: 800; letter-spacing: 1px; }
+.school-name-head { font-size: 1.8rem; color: var(--primary); font-weight: 800; margin: 10px 0 5px; border-bottom: 3px solid var(--accent); text-align: center; width: 100%; padding-bottom: 5px; }
+.sub { text-align: center; margin: 5px 0 10px; font-size: 1.2rem; color: var(--green); font-weight: 800; width: 100%; }
+h3 { text-align: center; margin: 15px 0 8px; font-size: 1.5rem; color: var(--primary); font-weight: 800; text-decoration: underline; }
+.w { width: 100%; }
+p { width: 100%; font-size: 1.2rem; font-weight: 600; }
+table { border-collapse: collapse; width: 100%; font-size: 1.15rem; margin-bottom: 12px; border: 2px solid var(--primary); }
+th, td { border: 1px solid var(--primary); padding: 6px; text-align: center; }
+th { background: var(--primary); color: #fff; font-weight: 800; font-size: 1.2rem; }
+td { font-weight: 700; height: 38px; }
+table:not(.seat) tbody tr:nth-child(even) td { background: #f8fafc; }
+.ed { cursor: text; outline: none; border-bottom: 2px dotted #94a3b8; display: inline-block; min-width: 30px; font-weight: 800; color: #b3261e; }
+.ed.fe { border: 0 !important; color: inherit; }
+td[contenteditable]:focus { outline: 3px solid var(--green); background: #fff7ec; }
+.tot td { font-weight: 800; background: #ffedd5 !important; color: #b3261e; }
+.fill table { font-size: 1.3rem; }
+.fill th { font-size: 1.35rem; }
+.cv .in { flex: 1; justify-content: space-evenly; }
+.cover { width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly; flex: 1; text-align: center; gap: 15px; }
+.logo { width: 45mm; height: 45mm; border-radius: 50%; border: 3px dashed var(--primary); display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; color: var(--primary); font-size: 1.1rem; font-weight: 800; background: #f8fafc; }
+.logo img { width: 100%; height: 100%; object-fit: contain; }
+.logo.has { border: 4px solid var(--accent); background: #fff; }
+.cover-main-title { font-size: 3.5rem; font-weight: 800; color: var(--primary); line-height: 1.1; }
+.cover-bar { width: 75%; height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--accent) 0 33%, var(--primary) 33% 66%, var(--green) 66%); }
+.cover-school-name { font-size: 2.5rem; font-weight: 800; color: var(--primary); line-height: 1.3; }
+.cover-exam-name { font-size: 2.2rem; font-weight: 800; color: var(--primary); background: #fff7ed; border-top: 4px solid var(--accent); border-bottom: 4px solid var(--accent); padding: 10px 40px; }
+.cover-year-badge { font-size: 1.6rem; font-weight: 800; color: #fff; background: var(--primary); border-radius: 50px; padding: 10px 30px; }
+.cover-std-name { font-size: 1.6rem; font-weight: 800; color: var(--green); }
+.cover-sign { width: 95%; display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: 800; color: var(--primary); border-top: 2px solid var(--primary); padding-top: 15px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 100%; }
+.grid > div { position: relative; border: 2px dashed var(--primary); border-radius: 10px; padding: 12px; background: #f8fafc; }
+.grid > div::before { content: "✂"; position: absolute; top: -14px; left: 20px; background: #fff; padding: 0 5px; font-size: 18px; color: var(--primary); }
+ol { line-height: 2.1; padding-left: 25px; font-size: 1.2rem; width: 100%; font-weight: 600; margin: 10px 0; }
+.ins { list-style: none; padding-left: 0; font-size: 1.15rem; counter-reset: i; }
+.ins li { display: flex; gap: 10px; align-items: flex-start; margin: 0 0 8px; counter-increment: i; font-weight: 600; }
+.ins li::before { content: counter(i, gujarati); flex: none; width: 1.8em; height: 1.8em; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 800; margin-top: 0.1em; }
+.pf { display: flex; justify-content: space-between; align-items: flex-end; width: 100%; margin-top: 5px; padding-top: 5px; border-top: 1px solid var(--primary); }
+.pf span:nth-child(1) { flex: 1.5; text-align: left; font-size: 0.9rem; color: #475569; font-weight: 600; }
+.pf span:nth-child(2) { flex: 1; text-align: center; font-size: 1.1rem; color: var(--primary); font-weight: 800; }
+.pf span:nth-child(3) { flex: 1; text-align: right; font-size: 1.1rem; color: var(--primary); font-weight: 800; }
+@media (max-width: 768px) { .std-grid { grid-template-columns: repeat(2, 1fr); } .s-grp { flex-direction: column; align-items: flex-start; } .s-grp label, .s-grp input { width: 100%; } }
+
+/* ===== PRINT ===== */
+@page { size: A4 portrait; margin: 0; }
+@page land { size: A4 landscape; margin: 0; }
+
+@media print {
+ .no-print { display: none !important; }
+ body, html { background: #fff !important; margin: 0; padding: 0; width: 100%; height: 100%; }
+ * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+ .container { margin: 0 !important; padding: 0 !important; max-width: none !important; display: block !important; }
+ .pgw { margin: 0 !important; padding: 0 !important; display: block !important; zoom: 1 !important; }
+ .print-page {
+     width: 210mm !important; height: 297mm !important;
+     margin: 0 !important; padding: 8mm !important;
+     box-sizing: border-box !important; box-shadow: none !important;
+     border: none !important; zoom: 1 !important; transform: none !important;
+     page-break-after: always;
+ }
+ .print-page.lnd { width: 297mm !important; height: 210mm !important; page: land; }
+ .frame { border: 6px ridge #0b2a5b !important; outline: 3px solid #ff9933 !important; outline-offset: -6px !important; width: 100% !important; height: 100% !important; box-sizing: border-box !important; }
+ .check-table table { font-size: 11pt; } .check-table th, .check-table td { padding: 4px 2px; height: 22px; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-marquee no-print">
+    <marquee behavior="scroll" direction="left" scrollamount="6">
+        પરબતભાઈ કરમુર - શ્રી કોરાડા વાડી પ્રાથમિક શાળા - WhatsApp: 9586311704 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        પરબતભાઈ કરમુર - શ્રી કોરાડા વાડી પ્રાથમિક શાળા - WhatsApp: 9586311704
+    </marquee>
+</div>
+
+<div class="container">
+    <div class="bar no-print">
+        <button class="btn-print" onclick="window.doPrint()">🖨️ પ્રિન્ટ / PDF સેવ કરો</button>
+        <button class="btn-setup" onclick="window.showSetup()">⚙️ સેટઅપ પર જાઓ</button>
+        <button class="btn-fit" onclick="fitAll()">🔄 ફિટ કરો</button>
+        <button type="button" class="as"><span class="dot"></span>ઓટો સેવ ચાલુ છે</button>
+        <div class="asinfo"><span id="clk">--:--:-- --</span><span id="cdt">--</span></div>
+    </div>
+    <main id="m" style="width: 100%; display: flex; flex-direction: column; align-items: center;"></main>
+</div>
+
+<script>
+/* ---------- 1. DATA & VARS ---------- */
+const KEY = 'pa_full_v10';
+const S  = { n: "શ્રી કોરાડા વાડી પ્રા. શાળા", t: "દ્વારકા", d: "દેવભૂમિ દ્વારકા", p: "દ્વારકા તાલુકા શાળા-૨", y: "2026–27" };
+const SC = { s3: 1, s4: 1, s5: 1, s6: 1, s7: 1, s8: 1 };
+const CLS = { c35: ["3","4","5"], c68: ["6","7","8"] };
+const BL = { a: 5, b: 5 };
+
+try { Object.assign(S,  JSON.parse(localStorage.getItem("pa_S_v10")  || "{}")); } catch(e){}
+try { Object.assign(SC, JSON.parse(localStorage.getItem("pa_SC_v10") || "{}")); } catch(e){}
+try { Object.assign(CLS,JSON.parse(localStorage.getItem("pa_CLS_v10")|| "{}")); } catch(e){}
+try { Object.assign(BL, JSON.parse(localStorage.getItem("pa_BL_v10") || "{}")); } catch(e){}
+
+function generateClasses() {
+    function getC(std, count) {
+        if(count === 0) return [];
+        if(count === 1) return [std.toString()];
+        let res = [];
+        for(let i=0; i<count; i++) { res.push(std + String.fromCharCode(65+i)); }
+        return res;
+    }
+    CLS.c35 = [].concat(getC(3, SC.s3), getC(4, SC.s4), getC(5, SC.s5));
+    CLS.c68 = [].concat(getC(6, SC.s6), getC(7, SC.s7), getC(8, SC.s8));
+    if(CLS.c35.length === 0) CLS.c35 = ["3","4","5"];
+    if(CLS.c68.length === 0) CLS.c68 = ["6","7","8"];
+}
+generateClasses();
+
+const f  = function(k){ return '<span class="ed" data-k="'+k+'" contenteditable>'+S[k]+'</span>'; };
+const bl = function(){ return '<span class="ed" contenteditable>______</span>'; };
+const dt = function(n){ const d=new Date(Date.UTC(1899,11,30)+n*864e5); return d.toLocaleDateString('en-GB',{timeZone:'UTC'}); };
+const DAY = {46317:"ગુરુવાર",46318:"શુક્રવાર",46319:"શનિવાર",46321:"સોમવાર",46322:"મંગળવાર",46323:"બુધવાર",46324:"ગુરુવાર"};
+const cell = function(c){ return (c&&c.e!==undefined)?'<td contenteditable>'+c.e+'</td>':'<td>'+c+'</td>'; };
+const trHTML = function(r){ const a=Array.isArray(r)?r:r.r; const at=Array.isArray(r)?'':(r.a||''); return '<tr '+at+'>'+a.map(cell).join('')+'</tr>'; };
+const tb = function(h,rows,cls,id){ return '<div class="w"><table'+(id?' id="'+id+'"':'')+' class="'+(cls||'')+'"><tr>'+h.map(function(x){return '<th>'+x+'</th>';}).join('')+'</tr>'+rows.map(trHTML).join('')+'</table></div>'; };
+const ed = function(n,v){ v=v||""; return Array.from({length:n},function(){return {e:v};}); };
+const head = function(t,x){ return '<div class="page-title-box"><h1>'+t+'</h1></div><div class="school-name-head">'+f("n")+'</div><div class="sub">તાલુકો: '+f("t")+' &nbsp;|&nbsp; જિલ્લો: '+f("d")+' &nbsp;|&nbsp; પ્રથમ સત્રાંત પરીક્ષા '+f("y")+'</div>'+(x||''); };
+const gn = function(n){ return String(n).replace(/\d/g,function(d){return '૦૧૨૩૪૫૬૭૮૯'[d];}); };
+const mb = function(e){ return 'onmousedown="event.preventDefault()" onclick="'+e+'"'; };
+
+const T35=[[46317,"ગુજરાતી"],[46318,"ગણિત"],[46321,"હિન્દી"],[46322,"પર્યાવરણ"],[46323,"અંગ્રેજી"]];
+const T68=[[46317,"ગુજરાતી"],[46318,"ગણિત"],[46319,"સંસ્કૃત"],[46321,"હિન્દી"],[46322,"વિજ્ઞાન"],[46323,"અંગ્રેજી"],[46324,"સા. વિજ્ઞાન"]];
+const TT=[[46317,"૩ થી ૫","ગુજરાતી","11:00 થી 1:00",40],[46318,"૩ થી ૫","ગણિત","11:00 થી 1:00",40],[46321,"૫","હિન્દી","11:00 થી 1:00",40],[46322,"૩ થી ૫","પર્યાવરણ","11:00 થી 1:00",40],[46323,"૩ થી ૫","અંગ્રેજી","11:00 થી 1:00",40],[46317,"૬ થી ૮","ગુજરાતી","2:00 થી 5:00",80],[46318,"૬ થી ૮","ગણિત","2:00 થી 5:00",80],[46319,"૬ થી ૮","સંસ્કૃત","8:00 થી 11:00",80],[46321,"૬ થી ૮","હિન્દી","2:00 થી 5:00",80],[46322,"૬ થી ૮","વિજ્ઞાન","2:00 થી 5:00",80],[46323,"૬ થી ૮","અંગ્રેજી","2:00 થી 5:00",80],[46324,"૬ થી ૮","સા. વિજ્ઞાન","2:00 થી 5:00",80]];
+
+/* ---------- 2. RENDER HELPERS ---------- */
+const m = document.getElementById('m');
+let pageCount = 0;
+const DYN = {};
+let idb = null;
+let restoring = false;
+
+function createTools(id,label){
+    return '<div class="tools no-print"><span class="tg">'+(label?'<b>'+label+':</b>':'')+'<button '+mb("addRow('"+id+"')")+'>➕ રો ઉમેરો</button><button class="rm" '+mb("delRow('"+id+"')")+'>➖ રો કાઢો</button></span><span class="hint">જે રોમાં કર્સર હોય તેની નીચે નવી રો ઉમેરાશે.</span></div>';
+}
+function createBlocksTool(id,val){
+    return '<div class="tools no-print"><span class="tg"><b>કુલ બ્લોક:</b><input type="number" min="1" max="40" value="'+val+'" oninput="setBlocks(\''+id+'\',this.value)"></span><span class="tg"><button '+mb("addSeat('"+id+"')")+'>➕ રો ઉમેરો</button><button class="rm" '+mb("delSeat('"+id+"')")+'>➖ રો કાઢો</button></span></div>';
+}
+
+function renderPage(content,isLnd,toolsHTML,customWrapper){
+    if(customWrapper){
+        m.insertAdjacentHTML('beforeend','<div class="pgw on no-print">'+content+'</div>');
+        return;
+    }
+    pageCount++;
+    const pfoot='<div class="pf"><span></span><span>પાના નં. '+gn(pageCount)+'</span><span>આચાર્યની સહી / સિક્કો: ____________</span></div>';
+    let html='<div class="pgw on '+(isLnd?'lnd':'')+'">';
+    if(toolsHTML) html+=toolsHTML;
+    html+='<div class="print-page '+(isLnd?'lnd':'')+'"><div class="frame"><div class="pg-body"><div class="sc"><div class="in">'+content+'</div></div></div>'+pfoot+'</div></div></div>';
+    m.insertAdjacentHTML('beforeend',html);
+}
+
+function dyn(id,gen,foot){ DYN[id]={gen:gen,foot:foot||0}; return id; }
+
+/* ---------- 3. BUILD ALL PAGES ---------- */
+function buildPages() {
+    restoring = true;
+    m.innerHTML = '';
+    pageCount = 0;
+    for (let k in DYN) delete DYN[k];
+
+    // 1. Setup (હંમેશા ઉપર દેખાશે)
+    const setupHTML='<div class="setup-box no-print" id="setup-box">'+
+        '<h2>⚙️ પ્રાથમિક માહિતી સેટઅપ</h2>'+
+        '<p class="setup-note">અહીં ભરેલી માહિતી બધી જગ્યાએ આપોઆપ સેવ થઈ જશે.<br>વર્ગની સંખ્યા બદલતાં જ નીચેના પત્રકોમાં રો/કોલમ જાતે જ બદલાઈ જશે.</p>'+
+        '<div class="s-grp"><label>શાળાનું નામ:</label><input type="text" id="inp_n" value="'+S.n+'" oninput="updateLiveText(\'n\', this.value)"></div>'+
+        '<div class="s-grp"><label>તાલુકો:</label><input type="text" id="inp_t" value="'+S.t+'" oninput="updateLiveText(\'t\', this.value)"></div>'+
+        '<div class="s-grp"><label>જિલ્લો:</label><input type="text" id="inp_d" value="'+S.d+'" oninput="updateLiveText(\'d\', this.value)"></div>'+
+        '<div class="s-grp"><label>પગારકેન્દ્ર:</label><input type="text" id="inp_p" value="'+S.p+'" oninput="updateLiveText(\'p\', this.value)"></div>'+
+        '<div class="s-grp"><label>શૈક્ષણિક વર્ષ:</label><input type="text" id="inp_y" value="'+S.y+'" oninput="updateLiveText(\'y\', this.value)"></div>'+
+        '<hr style="border:1px solid #e2e8f0;margin:25px 0;">'+
+        '<h3 style="text-align:center;color:#b3261e;margin:0;">ધોરણ પ્રમાણે વર્ગની સંખ્યા દાખલ કરો (વિધ્યાર્થિની સંખ્યા નહીં) વર્ગ  A,B,C એમ સંખ્યા </h3>'+
+        '<div class="std-grid">'+
+           '<div class="std-box"><span>ધોરણ 3 ના વર્ગ:</span><input type="number" id="sc_3" min="0" max="5" value="'+SC.s3+'" onchange="updateLiveCount(\'s3\', this.value)"></div>'+
+           '<div class="std-box"><span>ધોરણ 4 ના વર્ગ:</span><input type="number" id="sc_4" min="0" max="5" value="'+SC.s4+'" onchange="updateLiveCount(\'s4\', this.value)"></div>'+
+           '<div class="std-box"><span>ધોરણ 5 ના વર્ગ:</span><input type="number" id="sc_5" min="0" max="5" value="'+SC.s5+'" onchange="updateLiveCount(\'s5\', this.value)"></div>'+
+           '<div class="std-box"><span>ધોરણ 6 ના વર્ગ:</span><input type="number" id="sc_6" min="0" max="5" value="'+SC.s6+'" onchange="updateLiveCount(\'s6\', this.value)"></div>'+
+           '<div class="std-box"><span>ધોરણ 7 ના વર્ગ:</span><input type="number" id="sc_7" min="0" max="5" value="'+SC.s7+'" onchange="updateLiveCount(\'s7\', this.value)"></div>'+
+           '<div class="std-box"><span>ધોરણ 8 ના વર્ગ:</span><input type="number" id="sc_8" min="0" max="5" value="'+SC.s8+'" onchange="updateLiveCount(\'s8\', this.value)"></div>'+
+        '</div>'+
+        '<div class="small-ad-box">'+
+            '<h4>🎉 દૈનિક રોજનીશી App (Play Store પર)</h4>'+
+            '<p>✅ ઓટો અભ્યાસક્રમ + ઓફસેટ &nbsp;|&nbsp; ✅ વીકલી ટાઈમટેબલ</p>'+
+            '<p>✅ હોલિડે મેનેજમેન્ટ &nbsp;|&nbsp; ✅ મલ્ટી-ડિવાઇસ સિંક</p>'+
+            '<p style="color:#b3261e; font-weight:800; margin-top:10px;">🎁 100% ફ્રી — કોઈ છુપાયેલા ચાર્જીસ નહીં!</p>'+
+            '<a href="https://play.google.com/store/apps/details?id=com.karmurparbat.dainikrojnishi" target="_blank">👇 હમણાં ડાઉનલોડ કરો 👇</a>'+
+        '</div>'+
+    '</div>';
+    renderPage(setupHTML,false,'',true);
+
+    // 2. Cover
+    const coverHTML='<div class="cover"><div class="logo" title="લોગો ઉમેરવા ક્લિક કરો"><span>શાળાનો લોગો<br>ઉમેરવા ક્લિક કરો</span></div><div class="cover-main-title">પરીક્ષા આયોજન ફાઈલ</div><div class="cover-bar"></div><div class="cover-school-name">'+f("n")+'</div><div class="cover-address-name">તાલુકો: '+f("t")+' &nbsp;|&nbsp; જિલ્લો: '+f("d")+'</div><div class="cover-exam-name">પ્રથમ સત્રાંત પરીક્ષા</div><div class="cover-year-badge">શૈક્ષણિક વર્ષ: '+f("y")+'</div><div class="cover-std-name">પગારકેન્દ્ર: '+f("p")+'</div><div class="cover-sign"><div>આચાર્યનું નામ: '+bl()+'</div><div>સી.આર.સી. કો-ઓર્ડિનેટર: '+bl()+'</div></div></div>';
+    renderPage(coverHTML,false);
+
+    // 3. Committee
+    const cmRows = Array.from({length:8},function(_,i){return [i+1,...ed(3)];});
+    const wkRows = Array.from({length:8},function(_,i){return [i+1,...ed(3)];});
+    const commHTML = head("પરીક્ષા સમિતિ")+tb(["અ.નં.","શિક્ષકનું નામ","હોદ્દો","સહી"],cmRows,'',dyn('cm',function(){return ["",...ed(3)];}))+'<h3>પરીક્ષાલક્ષી કામગીરીની ફાળવણી</h3>'+tb(["અ.નં.","શિક્ષકનું નામ","સોંપેલ કામગીરી","સહી"],wkRows,'',dyn('wk',function(){return ["",...ed(3)];}));
+    renderPage(commHTML,false,createTools('cm','સમિતિ')+createTools('wk','કામગીરી'));
+
+    // 4. Register
+    const regRow = function(c,g){ return {r:[{e:c},{e:1},{e:1},"",...ed(2)],a:'data-g="'+g+'"'}; };
+    const regTot = function(l,t){ return {r:[l,"","","","",""],a:'data-t="'+t+'" class="tot"'}; };
+    const regArr = [].concat(CLS.c35.map(function(c){return regRow(c,'a');}),[regTot("૩ થી ૫ કુલ",'a')],CLS.c68.map(function(c){return regRow(c,'b');}),[regTot("૬ થી ૮ કુલ",'b'),regTot("એકંદર કુલ",'z')]);
+    renderPage(head("ધોરણવાર રજીસ્ટર સંખ્યા")+tb(["ધોરણ","કુમાર","કન્યા","કુલ","વર્ગ શિક્ષકની સહી","રીમાર્કસ"],regArr,"reg","reg"),false,'<div class="tools no-print"><span class="tg"><b>૩-૫:</b><button '+mb("addReg('a')")+'>➕ રો ઉમેરો</button><button class="rm" '+mb("delReg('a')")+'>➖ રો કાઢો</button></span><span class="tg"><b>૬-૮:</b><button '+mb("addReg('b')")+'>➕ રો ઉમેરો</button><button class="rm" '+mb("delReg('b')")+'>➖ રો કાઢો</button></span></div>');
+
+    // 5. Timetable
+    renderPage(head("ધોરણ ૩ થી ૮ (સમયપત્રક)")+tb(["તારીખ","વાર","ધોરણ","વિષય","સમય","ગુણ"],TT.map(function(r){return [dt(r[0]),DAY[r[0]],...r.slice(1)];}),'','tt'),false);
+
+    // 6. Seat
+    const seatRows = function(b,cl){
+        let arr = cl.map(function(c,i){ return {r:[i?"":b,{e:c},{e:""},"થી",{e:""},{e:""},{e:""}],a:'data-b="'+b+'"'}; });
+        arr.push({r:["","કુલ","","","","",""],a:'data-b="'+b+'" data-t="1" class="tot"'});
+        return arr;
+    };
+    [["a","૩ થી ૫",CLS.c35],["b","૬ થી ૮",CLS.c68]].forEach(function(arr){
+        const g=arr[0],l=arr[1],cl=arr[2]; const id='seat_'+g;
+        const items = Array.from({length:BL[g]},function(_,i){return i+1;}).flatMap(function(b){return seatRows(b,cl);});
+        renderPage(head("પરીક્ષાની બેઠક વ્યવસ્થા",'<div class="sub">ધોરણ '+l+'</div>')+tb(["બ્લોક","ધોરણ","ક્રમ","","ક્રમ","કુલ","રીમાર્કસ"],items,"seat",id),false,createBlocksTool(id,BL[g]));
+    });
+
+    // 7. Absent
+    [["a","૩ થી ૫",CLS.c35],["b","૬ થી ૮",CLS.c68]].forEach(function(arr){
+        const g=arr[0],l=arr[1],cl=arr[2]; const id='abs_'+g; const nc=cl.length;
+        dyn(id,function(){return ["",...ed(2),...ed(nc),"",{e:""}];},1);
+        const rows = Array.from({length:BL[g]},function(_,i){return [i+1,...ed(2),...ed(nc),"",{e:""}];});
+        rows.push({r:["કુલ",...Array(nc+4).fill("")],a:'class="tot"'});
+        renderPage(head("પરીક્ષામાં ગેરહાજર બાળકોની માહિતી",'<div class="sub">ધોરણ '+l+' &nbsp;|&nbsp; તારીખ: '+bl()+' &nbsp; વિષય: '+bl()+'</div>')+tb([].concat(["બ્લોક","ફાળવાયેલ સંખ્યા","હાજર સંખ્યા"],cl,["કુલ ગે.હા.","નિરીક્ષકની સહી"]),rows,"abs",id),true,createTools(id,'રો'));
+    });
+
+    // 8. Inspection
+    [["a","૩ થી ૫",T35],["b","૬ થી ૮",T68]].forEach(function(arr){
+        const g=arr[0],l=arr[1],T=arr[2]; const nb=BL[g]; const id='insp_'+g;
+        dyn(id,function(prev){ const p=+(prev&&prev.cells&&prev.cells[3]?prev.cells[3].textContent:NaN); return [{e:prev&&prev.cells[0]?prev.cells[0].textContent:""},{e:prev&&prev.cells[1]?prev.cells[1].textContent:""},{e:prev&&prev.cells[2]?prev.cells[2].textContent:""},{e:isFinite(p)&&p>0?p+1:""},{e:""},{e:""}]; });
+        const rows = T.flatMap(function(subjArr,di){
+            return Array.from({length:nb},function(_,i){return {r:[{e:dt(subjArr[0])},{e:DAY[subjArr[0]]},{e:subjArr[1]},{e:i+1},...ed(2)],a:'data-d="'+di+'"'};});
+        });
+        renderPage(head("નિરીક્ષણ કાર્યનું આયોજન",'<div class="sub">ધોરણ '+l+'</div>')+tb(["તારીખ","વાર","વિષય","બ્લોક","નિરીક્ષકનું નામ","સહી"],rows,'',id),false,createTools(id,'રો'));
+    });
+
+    // 9. Checking
+    const checkPages=[{id:'chk_35',l:'૩ થી ૫',sub:T35},{id:'chk_68_1',l:'૬ થી ૮',sub:T68.slice(0,4)},{id:'chk_68_2',l:'૬ થી ૮',sub:T68.slice(4)}];
+    checkPages.forEach(function(page){
+        const rows=[];
+        page.sub.forEach(function(sArr){
+            let uG=[];
+            if(page.l==='૩ થી ૫'&&sArr[1]==='હિન્દી') uG=CLS.c35.filter(function(c){return c.indexOf('5')===0;});
+            else if(page.l==='૩ થી ૫') uG=CLS.c35;
+            else uG=CLS.c68;
+            uG.forEach(function(c){ rows.push({r:[{e:dt(sArr[0])},{e:sArr[1]},{e:c},...ed(5)],a:''}); });
+        });
+        dyn(page.id,function(){return ed(8);});
+        renderPage(head("પેપર ચકાસણી આયોજન",'<div class="sub">ધોરણ '+page.l+' — વિષયવાર ચકાસણી</div>')+'<div class="check-table">'+tb(['તારીખ','વિષય','ધોરણ / વર્ગ','પેપર સંખ્યા','પરીક્ષકનું નામ','પરીક્ષકની સહી / તારીખ','પેપર પરત તારીખ','આચાર્યની સહી'],rows,'',page.id)+'</div>',false,createTools(page.id,'રો'));
+    });
+
+    // 10. Bundle
+    const bun = function(){ return '<div><div class="sub"><b>પ્રથમ સત્રાંત પરીક્ષા - <span class="ed" contenteditable>ઓક્ટોબર - 2026</span></b><br>શાળાનું નામ: '+f("n")+'<br>તા: '+f("t")+' &nbsp; જિ: '+f("d")+'<br><b>બંડલ પર બાંધવાનો હાજરી રીપોર્ટ</b><br>તારીખ: ______ &nbsp; વિષય: ______</div>'+tb(["ધોરણ","રજીસ્ટર સંખ્યા","હાજર સંખ્યા","ગેરહાજર સંખ્યા","નોંધ"],[ed(5),ed(5),ed(5)])+'<p>ગેરહાજર નંબર: ____________________<br>આ બંડલમાં કુલ ______ ઉત્તરવહી મુકવામાં આવેલ છે.</p><p>વર્ગ શિક્ષકની સહી ________ &nbsp; આચાર્યની સહી/સિક્કો ________</p></div>'; };
+    renderPage('<div class="grid">'+bun()+bun()+bun()+bun()+'</div>',false);
+
+    // 11. Instructions
+    const INS=["પરીક્ષા સમિતિના સભ્યોએ પરીક્ષા આયોજન સુવ્યવસ્થિત રીતે થાય તથા બાળકોને ભયમુક્ત વાતાવરણ પૂરું પાડવાના પ્રયત્નો કરવા.","પરીક્ષાનાં પ્રશ્નપત્રોની ગોપનીયતા જળવાય એ સૌની સહિયારી જવાબદારી રહેશે.","પરીક્ષા સમયગાળા દરમિયાન બાળક ગેરહાજર રહે તો તેનાં કારણો જાણી બાળકને શાળામાં આવવા પ્રેરાય તેવા યોગ્ય પ્રયત્નો કરવા.","પ્રજ્ઞા ધોરણોના શિક્ષકોએ તાલીમમાં જણાવેલ કાર્યપદ્ધતિથી યોગ્ય કામગીરી કરવી તથા જરૂરી પત્રકો અને આધારોની ચકાસણી અને સાચવણી કરવાની રહેશે.","આકસ્મિક કારણો સિવાય શિક્ષકે રજાનો આગ્રહ રાખવો નહીં. જો કોઈ શિક્ષકને પરીક્ષા દરમિયાન રજાની જરૂર જણાય તો શક્ય હોય ત્યાં સુધી અગાઉથી જાણ કરવી.","ખંડ નિરીક્ષણની જવાબદારી સોંપેલ શિક્ષકે ખંડના ધોરણ પ્રમાણે હાજર અને ગેરહાજર વિદ્યાર્થીઓની સંખ્યાનું સરવૈયું કરી આપવાનું રહેશે. તથા તે મુજબ રોજ રોજકામ પત્રક ભરી સહીઓ કરવાની રહેશે.","વર્ગશિક્ષકે જવાબવહીઓની સંખ્યા ગણીને તે મુજબ જ રોજકામ પત્રક બંડલ સાથે બાંધવાનું રહેશે.","ધોરણ અને વિષય મુજબ ફાળવેલ જવાબવહીઓની યોગ્ય રીતે ચકાસણી કરી સમયસર પરત જમા કરાવવાની રહેશે.","પરીક્ષાના ગુણ અંગે ઉપલી કચેરી દ્વારા જાણ કરવામાં આવે ત્યારે ઓનલાઈન એન્ટ્રી કરવાની જવાબદારી ધોરણ મુજબના વિષયશિક્ષકની રહેશે. તેથી ગુણપત્રક તૈયાર કરી આચાર્યશ્રીની સહી કરાવવાની રહેશે.","પરીક્ષા શરૂ થાય તે પહેલાં પરીક્ષાના સમયપત્રકની તમામ વર્ગો અને વિષયોના શિક્ષકોને જાણ કરવામાં આવે તથા સમયપત્રક મુજબ પરીક્ષા યોજાય તેની ખાતરી કરવાની રહેશે.","પરીક્ષા માટે જરૂરી સ્ટેશનરી, હાજરીપત્રક, બેઠક વ્યવસ્થા અને અન્ય સામગ્રીની અગાઉથી તૈયારી કરી લેવાની રહેશે.","પરીક્ષા ખંડમાં પૂરતો પ્રકાશ, હવા-ઉજાસ, સ્વચ્છતા અને શાંતિ જળવાય તેની યોગ્ય વ્યવસ્થા કરવાની રહેશે.","પરીક્ષા શરૂ થાય તે પહેલાં વિદ્યાર્થીઓને પરીક્ષાના નિયમો, સમયમર્યાદા અને જવાબવહીમાં જરૂરી વિગતો ભરવા અંગે સ્પષ્ટ સૂચનાઓ આપવાની રહેશે.","પરીક્ષા દરમિયાન વિદ્યાર્થીઓને કોઈપણ પ્રકારની શારીરિક કે માનસિક અસ્વસ્થતા ન થાય અને તેઓ શાંતિપૂર્ણ વાતાવરણમાં પરીક્ષા આપી શકે તે માટે સંવેદનશીલ અભિગમ રાખવાનો રહેશે.","પરીક્ષા ખંડમાં બેઠક વ્યવસ્થા એવી રીતે ગોઠવવાની રહેશે કે વિદ્યાર્થીઓને પ્રશ્નપત્ર ઉકેલવામાં પૂરતી જગ્યા મળે અને પરીક્ષાની નિષ્પક્ષતા જળવાય.","પરીક્ષા દરમિયાન સમયાંતરે બેલ અથવા અન્ય સૂચન વ્યવસ્થા દ્વારા પરીક્ષાના પ્રારંભ, બાકી રહેલા સમય અને પૂર્ણતાની જાણ વિદ્યાર્થીઓને થાય તેવી વ્યવસ્થા કરવાની રહેશે.","પરીક્ષા દરમિયાન કોઈ વિદ્યાર્થીને પ્રશ્ન સમજવામાં મુશ્કેલી પડે તો પરીક્ષાના નિયમોને અનુરૂપ સ્પષ્ટતા કરવી, પરંતુ જવાબ મેળવવામાં મદદરૂપ થાય તેવું માર્ગદર્શન આપવું નહીં.","પરીક્ષા દરમિયાન વીજળી, પીવાના પાણી, પંખા અથવા અન્ય પાયાની સુવિધાઓમાં વિક્ષેપ ન પડે તેની અગાઉથી ચકાસણી કરવાની રહેશે.","આગ, કુદરતી આફત અથવા અન્ય આકસ્મિક પરિસ્થિતિ ઊભી થાય તો વિદ્યાર્થીઓની સલામતીને પ્રાથમિકતા આપી શાળાની આપત્તિ વ્યવસ્થાપન પ્રક્રિયા મુજબ કામગીરી કરવાની રહેશે.","પરીક્ષા દરમિયાન શાળાના અન્ય કાર્યક્રમો, બિનજરૂરી અવરજવર અને ઘોંઘાટને નિયંત્રિત કરી પરીક્ષાનું શાંતિપૂર્ણ વાતાવરણ જળવાય તેની કાળજી રાખવાની રહેશે."];
+    renderPage(head("પરીક્ષાલક્ષી સૂચનાઓ")+'<ol class="ins">'+INS.map(function(x){return '<li><span>'+x+'</span></li>';}).join('')+'</ol>',false);
+
+    // 12. Grand Finale Ad
+    const adHTML='<div class="full-ad no-print">'+
+        '<div class="float-icon icon-1">📱</div>'+
+        '<div class="float-icon icon-2">🚀</div>'+
+        '<div class="float-icon icon-3">📚</div>'+
+        '<div class="float-icon icon-4">🎁</div>'+
+        '<h3>🚨 શિક્ષક મિત્રો માટે ધમાકેદાર જાહેરાત! 🚨</h3>'+
+        '<h4>🎉 દૈનિક રોજનીશી હવે PLAY STORE પર! 🎉</h4>'+
+        '<p style="font-size:1.8rem; color:#0b2a5b; font-weight:800;">📚 Smart Daily Diary App — 100% FREE! 💯</p>'+
+        '<div class="features">'+
+            '<div style="color:#b3261e; text-align:center; margin-bottom:15px; font-size:1.6rem;">✨ મુખ્ય લાભો: ✨</div>'+
+            '✅ દૈનિક રોજનીશી PDF &nbsp;|&nbsp; ✅ Auto અભ્યાસક્રમ + Offset<br>'+
+            '✅ Weekly Timetable &nbsp;|&nbsp; ✅ Holiday Management<br>'+
+            '✅ Multi-Device Sync (એકથી વધુ ફોનમાં સિંક)<br><br>'+
+            '🤖 <b>Auto અભ્યાસક્રમ</b> — Chapter + Lesson Position નું Automatic Calculation<br>'+
+            '🏫 <b>ધોરણ 3 થી 8</b> માટે Support &nbsp;|&nbsp; 📖 <b>13 Subjects</b> Support<br>'+
+            '<div style="color:#138808; text-align:center; margin-top:15px; font-size:1.5rem;">🎁 <b>100% FREE — કોઈ Subscription કે Hidden Charges નહીં!</b></div>'+
+        '</div><br>'+
+        '<a href="https://play.google.com/store/apps/details?id=com.karmurparbat.dainikrojnishi" target="_blank" class="btn">👇 હમણાં જ Download કરો 👇</a>'+
+        '<p style="margin-top:30px; font-size:1.4rem;">💬 <b>મદદ માટે માત્ર WhatsApp:</b> <a href="https://wa.me/919586311704" target="_blank" style="color:var(--green); font-weight:800; text-decoration:none; background:#fff; padding:5px 15px; border-radius:20px; border:2px solid var(--green);">9586311704</a></p>'+
+        '<p style="color:#b3261e; font-size:1.2rem; margin-top:15px;">⚠️ કૃપા કરીને ફોન કૉલ કરશો નહીં. ફક્ત WhatsApp Message કરશો.</p>'+
+    '</div>';
+    renderPage(adHTML,false,'',true);
+
+    restoring = false;
+}
+
+/* ---------- 4. AUTO SAVE SETUP ---------- */
+window.showSetup = function(){
+    const sb = document.getElementById('setup-box');
+    if(sb){ sb.scrollIntoView({behavior:'smooth'}); }
+};
+
+window.updateLiveText = function(key, val) {
+    S[key] = val;
+    localStorage.setItem("pa_S_v10", JSON.stringify(S));
+    document.querySelectorAll('.ed[data-k="'+key+'"]').forEach(function(el) {
+        el.textContent = val;
+    });
+    queueSave();
+};
+
+window.updateLiveCount = function(key, val) {
+    SC[key] = parseInt(val) || 0;
+    localStorage.setItem("pa_SC_v10", JSON.stringify(SC));
+    
+    localStorage.removeItem(KEY);
+    if(idb) { try{ idb.transaction('k','readwrite').objectStore('k').delete(KEY); }catch(e){} }
+    
+    generateClasses();
+    buildPages();
+    calcAll(); fitAll();
+    queueSave();
+};
+
+/* ---------- 5. FIT / ZOOM ---------- */
+function fitPage(w){
+    if(!w || w.classList.contains('setup-box') || w.classList.contains('full-ad')) return;
+    const pg=w.querySelector('.print-page'); if(!pg) return;
+    const body=w.querySelector('.pg-body'), sc=w.querySelector('.sc'), inn=w.querySelector('.in');
+    if(!body||!sc||!inn) return;
+    const W=body.clientWidth, H=body.clientHeight;
+    if(!W||!H) return;
+    const tbl = pg.classList.contains('fill') ? inn.querySelector('table') : null;
+    if(tbl){ tbl.style.height=''; [...tbl.rows].forEach(function(r){ r.style.height=''; }); }
+    let s=1;
+    for(let i=0;i<14;i++){
+        sc.style.width  = (W/s)+'px';
+        sc.style.height = (H/s)+'px';
+        sc.style.setProperty('--s', s);
+        const h = inn.offsetHeight*s, r = H/h;
+        if(r<0.999) s = Math.max(.2, s*r*.995);
+        else if(s<1 && r>1.03) s = Math.min(1, s*r*.99);
+        else break;
+    }
+    sc.style.width  = (W/s)+'px';
+    sc.style.height = (H/s)+'px';
+    sc.style.setProperty('--s', s);
+    sc.style.transform = 'scale('+s+')';
+    if(tbl){
+        const extra = H/s - inn.offsetHeight;
+        if(extra>0){
+            const rs=[...tbl.rows].slice(1);
+            const hs=rs.map(function(r){return r.offsetHeight;});
+            const ad=(extra-2)/Math.max(1,rs.length);
+            rs.forEach(function(r,i){ r.style.height=(hs[i]+ad)+'px'; });
+        }
+    }
+}
+function fitAll(){ [...m.children].forEach(fitPage); }
+window.fitAll = fitAll;
+let rq=0;
+const schedFit=function(){ cancelAnimationFrame(rq); rq=requestAnimationFrame(fitAll); };
+
+function setZoom(){
+    const r=document.documentElement.style;
+    r.setProperty('--z',  Math.min(1, (innerWidth-30)/795));
+    r.setProperty('--zl', Math.min(1, (innerWidth-30)/1124));
+}
+window.doPrint = function(){
+    fitAll();
+    setTimeout(function(){ window.print(); }, 100);
+};
+addEventListener('resize', setZoom);
+
+/* ---------- 6. ROW OPS ---------- */
+let LF=null;
+document.addEventListener('focusin',function(e){ if(e.target.closest&&e.target.closest('.print-page')) LF=e.target.closest('tr')||null; });
+document.addEventListener('pointerdown',function(e){ if(!e.target.closest('.tools button,.print-page td')) LF=null; });
+const focusRow=function(t){ return LF&&t.contains(LF)?LF:null; };
+function afterChange(t){
+    const d=DYN[t.id];
+    if(d&&d.num) [...t.rows].slice(1,t.rows.length-d.foot).forEach(function(r,i){ r.cells[0].textContent=i+1; });
+    LF=null; calcAll(); fitPage(t.closest('.pgw'));
+}
+
+window.addRow=function(id){
+    const t=document.getElementById(id), d=DYN[id]; if(!t||!d) return;
+    const lim=t.rows.length-d.foot; let at=lim; const fr=focusRow(t);
+    if(fr&&fr.rowIndex>=1&&fr.rowIndex<lim) at=fr.rowIndex+1;
+    const tr=t.insertRow(at);
+    tr.innerHTML=d.gen(t.rows[at-1]).map(cell).join('');
+    if(t.rows[at-1].dataset.d!==undefined) tr.dataset.d=t.rows[at-1].dataset.d;
+    afterChange(t);
+};
+window.delRow=function(id){
+    const t=document.getElementById(id), d=DYN[id]; if(!t||!d) return;
+    const lim=t.rows.length-d.foot; if(lim-1<=0) return;
+    const fr=focusRow(t);
+    t.deleteRow(fr&&fr.rowIndex>=1&&fr.rowIndex<lim ? fr.rowIndex : lim-1);
+    afterChange(t);
+};
+window.addReg=function(g){
+    const t=document.getElementById('reg'), tot=[...t.rows].find(function(r){return r.dataset.t==g;});
+    let at=tot.rowIndex; const fr=focusRow(t);
+    if(fr&&fr.dataset.g==g) at=fr.rowIndex+1;
+    t.rows[at-1].insertAdjacentHTML('afterend', trHTML({r:[{e:""},{e:""},{e:""},"",...ed(2)],a:'data-g="'+g+'"'}));
+    LF=null; calcAll(); fitPage(t.closest('.pgw'));
+};
+window.delReg=function(g){
+    const t=document.getElementById('reg'), rs=[...t.rows].filter(function(r){return r.dataset.g==g;});
+    if(rs.length<=1) return;
+    const fr=focusRow(t);
+    (fr&&fr.dataset.g==g?fr:rs[rs.length-1]).remove();
+    LF=null; calcAll(); fitPage(t.closest('.pgw'));
+};
+
+const blocksOf=function(t){ return Math.max(0,...[...t.rows].map(function(r){return +r.dataset.b||0;})); };
+function renumSeat(t){
+    let seen=0;
+    [...t.rows].forEach(function(r){
+        if(!r.dataset.b) return;
+        if(r.dataset.t){ r.cells[0].textContent=""; return; }
+        const b=+r.dataset.b;
+        r.cells[0].textContent = (b!=seen) ? b : "";
+        seen=b;
+    });
+}
+window.setBlocks=function(id,v){
+    const t=document.getElementById(id); let n=parseInt(v); if(!n||n<1) return;
+    n=Math.min(40,n); const cur=blocksOf(t);
+    if(n>cur){
+        const cl=[...t.rows].filter(function(r){return r.dataset.b==cur&&!r.dataset.t;}).map(function(r){return r.cells[1].textContent;});
+        for(let b=cur+1;b<=n;b++) t.tBodies[0].insertAdjacentHTML('beforeend', seatRows(b, cl.length?cl:[""]).map(trHTML).join(''));
+    } else if(n<cur){
+        [...t.rows].filter(function(r){return +r.dataset.b>n;}).forEach(function(r){r.remove();});
+    }
+    renumSeat(t);
+    BL[id.slice(-1)]=n;
+    syncBlocks(id.slice(-1),n);
+    localStorage.setItem("pa_BL_v10", JSON.stringify(BL));
+    LF=null; calcAll(); fitPage(t.closest('.pgw'));
+};
+function syncBlocks(g,n){
+    const ab=document.getElementById('abs_'+g);
+    if(ab){
+        const d=DYN['abs_'+g];
+        while(ab.rows.length-1-d.foot<n){ const at=ab.rows.length-d.foot; const tr=ab.insertRow(at); tr.innerHTML=d.gen().map(cell).join(''); }
+        while(ab.rows.length-1-d.foot>n) ab.deleteRow(ab.rows.length-1-d.foot);
+        [...ab.rows].slice(1,ab.rows.length-d.foot).forEach(function(r,i){ r.cells[0].textContent=i+1; });
+        fitPage(ab.closest('.pgw'));
+    }
+    const ip=document.getElementById('insp_'+g);
+    if(ip){
+        const d=DYN['insp_'+g];
+        const days=new Set([...ip.rows].map(function(r){return r.dataset.d;}).filter(function(x){return x!==undefined;}));
+        days.forEach(function(di){
+            let rs=[...ip.rows].filter(function(r){return r.dataset.d==di;});
+            while(rs.length<n){ const last=rs[rs.length-1]; const tr=ip.insertRow(last.rowIndex+1); tr.dataset.d=di; tr.innerHTML=d.gen(last).map(cell).join(''); rs.push(tr); }
+            while(rs.length>n && rs.length>1){ rs.pop().remove(); }
+            rs.forEach(function(r,i){ r.cells[3].textContent=i+1; });
+        });
+        fitPage(ip.closest('.pgw'));
+    }
+}
+window.addSeat=function(id){
+    const t=document.getElementById(id), fr=focusRow(t);
+    const b = (fr&&fr.dataset.b) ? +fr.dataset.b : blocksOf(t);
+    const cls=[...t.rows].filter(function(r){return +r.dataset.b==b&&!r.dataset.t;});
+    const ref = (fr&&fr.dataset.b&&!fr.dataset.t) ? fr : cls[cls.length-1];
+    ref.insertAdjacentHTML('afterend', trHTML({r:["",{e:""},{e:""},"થી",{e:""},{e:""},{e:""}],a:'data-b="'+b+'"'}));
+    renumSeat(t); LF=null; calcAll(); fitPage(t.closest('.pgw'));
+};
+window.delSeat=function(id){
+    const t=document.getElementById(id), fr=focusRow(t); let tg;
+    if(fr&&fr.dataset.b&&!fr.dataset.t) tg=fr;
+    else { const b=blocksOf(t), cls=[...t.rows].filter(function(r){return +r.dataset.b==b&&!r.dataset.t;}); tg=cls[cls.length-1]; }
+    if(!tg) return;
+    if([...t.rows].filter(function(r){return r.dataset.b==tg.dataset.b&&!r.dataset.t;}).length<=1) return;
+    tg.remove(); renumSeat(t); LF=null; calcAll(); fitPage(t.closest('.pgw'));
+};
+
+/* ---------- 7. CALC ---------- */
+function calcReg(){
+    const t=document.getElementById('reg'); if(!t) return;
+    const n=function(c){return +c.textContent||0;}, g={a:[0,0],b:[0,0]};
+    [...t.rows].slice(1).forEach(function(r){
+        const c=r.cells, k=r.dataset.g;
+        if(k){
+            g[k][0]+=n(c[1]); g[k][1]+=n(c[2]);
+            const s=n(c[1])+n(c[2]); c[3].textContent=s||"";
+        } else {
+            const v = (r.dataset.t=="z") ? [g.a[0]+g.b[0], g.a[1]+g.b[1]] : g[r.dataset.t];
+            c[1].textContent=v[0]; c[2].textContent=v[1]; c[3].textContent=v[0]+v[1];
+        }
+    });
+}
+function calcAbs(t){
+    const nc=t.rows[0].cells.length-5, tt=3+nc, sum=Array(tt+1).fill(0), has=Array(tt+1).fill(false);
+    [...t.rows].slice(1,t.rows.length-1).forEach(function(r){
+        const c=r.cells; let rs=0, rh=false;
+        for(let j=3;j<tt;j++){ const v=c[j].textContent.trim(); if(v!==''){ rs+=+v||0; rh=true; } }
+        c[tt].textContent = rh?rs:"";
+        for(let j=1;j<=tt;j++){ const v=c[j].textContent.trim(); if(v!==''){ sum[j]+=+v||0; has[j]=true; } }
+    });
+    const c=t.rows[t.rows.length-1].cells;
+    for(let j=1;j<=tt;j++) c[j].textContent = has[j]?sum[j]:"";
+}
+function calcSeat(t){
+    [...t.rows].forEach(function(r){ if(r.dataset.b) r.dataset.p=r.dataset.b%2; });
+    let s=0,h=false;
+    [...t.rows].slice(1).forEach(function(r){
+        if(r.dataset.t){ r.cells[5].textContent=h?s:""; s=0; h=false; }
+        else { const v=r.cells[5].textContent.trim(); if(v!==''){ s+=+v||0; h=true; } }
+    });
+}
+function calcAll(){
+    calcReg();
+    document.querySelectorAll('table.abs').forEach(calcAbs);
+    document.querySelectorAll('table.seat').forEach(calcSeat);
+}
+
+/* ---------- 8. LIVE EDIT ---------- */
+document.addEventListener('input',function(e){
+    const el=e.target; if(!el.classList) return;
+    if(el.classList.contains('ed')){
+        const k=el.dataset.k;
+        if(k){
+            const v=el.textContent; S[k]=v;
+            document.querySelectorAll('.ed[data-k="'+k+'"]').forEach(function(x){ if(x!==el) x.textContent=v; });
+            try{ localStorage.setItem("pa_S_v10", JSON.stringify(S)); }catch(e){}
+        }
+    }
+    const td=el.closest&&el.closest('td');
+    if(td){
+        const tr=td.parentElement, t=tr.closest('table');
+        if(t&&t.classList.contains('seat')&&!tr.dataset.t&&(td.cellIndex==2||td.cellIndex==4)){
+            const a=parseInt(tr.cells[2].textContent), b=parseInt(tr.cells[4].textContent);
+            if(a>0&&b>=a) tr.cells[5].textContent=b-a+1;
+        }
+    }
+    calcAll(); schedFit();
+});
+
+/* ---------- 9. AUTOSAVE ---------- */
+function applySaved(d){
+    if(!d||!d.pages||d.pages.length!==m.querySelectorAll('.pgw').length) return false;
+    restoring=true;
+    try{
+        if(d.S)  Object.assign(S,  d.S);
+        if(d.BL) Object.assign(BL, d.BL);
+        m.querySelectorAll('.pgw').forEach(function(s,i){
+            const n=s.querySelector('.in');
+            if(n&&typeof d.pages[i]==='string') n.innerHTML=d.pages[i];
+        });
+        ['a','b'].forEach(function(g){
+            const inp=m.querySelector('input[oninput*="seat_'+g+'"]');
+            if(inp) inp.value=BL[g];
+        });
+    } finally { restoring=false; }
+    return true;
+}
+function idbOpen(){
+    return new Promise(function(res){
+        try{
+            const r=indexedDB.open('pa_autosave',1);
+            r.onupgradeneeded=function(){ r.result.createObjectStore('k'); };
+            r.onsuccess=function(){ res(r.result); };
+            r.onerror=function(){ res(null); };
+        }catch(e){ res(null); }
+    });
+}
+function idbPut(s){ try{ if(!idb) return; idb.transaction('k','readwrite').objectStore('k').put(s,KEY); }catch(e){} }
+function idbGet(){
+    return new Promise(function(res){
+        try{
+            if(!idb) return res(null);
+            const q=idb.transaction('k').objectStore('k').get(KEY);
+            q.onsuccess=function(){ res(q.result||null); };
+            q.onerror=function(){ res(null); };
+        }catch(e){ res(null); }
+    });
+}
+const asb=document.querySelector('.as');
+const pad=function(n){ return String(n).padStart(2,'0'); };
+let pend=false, ft=0;
+function snapshot(){ return JSON.stringify({ v:1, ts:Date.now(), S:S, BL:BL, pages:[...m.querySelectorAll('.pgw')].map(function(s){ const n=s.querySelector('.in'); return n?n.innerHTML:''; }) }); }
+function doSave(){
+    pend=false;
+    const s=snapshot();
+    let ok=false;
+    try{ localStorage.setItem(KEY,s); localStorage.setItem('pa_S_v10',JSON.stringify(S)); ok=true; }catch(e){}
+    idbPut(s);
+    if(ok||idb) showSaved(ok||!!idb); else showSaved(false);
+}
+function showSaved(ok){
+    if(ok){ asb.classList.remove('err'); asb.style.filter='brightness(1.25)'; clearTimeout(ft); ft=setTimeout(function(){ asb.style.filter='none'; },250); }
+    else asb.classList.add('err');
+}
+const queueSave=function(){ if(restoring||pend) return; pend=true; queueMicrotask(doSave); };
+new MutationObserver(queueSave).observe(m,{childList:true,subtree:true,characterData:true});
+document.addEventListener('input',queueSave,true);
+document.addEventListener('change',queueSave,true);
+const flush=function(){
+    if(pend) doSave();
+    else { try{ localStorage.setItem(KEY,snapshot()); }catch(e){} }
+};
+addEventListener('pagehide',flush);
+addEventListener('beforeunload',flush);
+document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='hidden') flush(); });
+
+/* ---------- 10. CLOCK ---------- */
+const clk=document.getElementById('clk'), cdt=document.getElementById('cdt');
+function tick(){
+    const d=new Date(); let h=d.getHours(); const ap=h>=12?'PM':'AM'; h=h%12||12;
+    clk.textContent='🕒 '+pad(h)+':'+pad(d.getMinutes())+':'+pad(d.getSeconds())+' '+ap;
+    cdt.textContent='📅 '+pad(d.getDate())+'/'+pad(d.getMonth()+1)+'/'+d.getFullYear()+' · '+(DAY[46321+d.getDay()-1]||'');
+    setTimeout(tick,1000-d.getMilliseconds());
+}
+tick();
+
+/* ---------- 11. LOGO ---------- */
+document.addEventListener('click',function(e){
+    const l=e.target.closest&&e.target.closest('.logo'); if(!l) return;
+    const i=document.createElement('input'); i.type='file'; i.accept='image/*';
+    i.onchange=function(){
+        const f=i.files[0]; if(!f) return;
+        const r=new FileReader();
+        r.onload=function(){
+            const im=new Image();
+            im.onload=function(){
+                const c=document.createElement('canvas'), k=Math.min(1,300/Math.max(im.width,im.height));
+                c.width=im.width*k; c.height=im.height*k;
+                c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+                l.innerHTML='<img alt="" src="'+c.toDataURL('image/png')+'">';
+                l.classList.add('has');
+            };
+            im.src=r.result;
+        };
+        r.readAsDataURL(f);
+    };
+    i.click();
+});
+
+/* ---------- 12. BOOT ---------- */
+setZoom(); calcAll();
+buildPages();
+calcAll(); 
+
+let SAVED = null;
+try{ SAVED = JSON.parse(localStorage.getItem(KEY) || 'null'); }catch(e){}
+if(SAVED && applySaved(SAVED)) calcAll();
+
+idbOpen().then(async function(db){
+    idb=db;
+    const d = await idbGet();
+    let cur = null;
+    try{ cur = JSON.parse(localStorage.getItem(KEY) || 'null'); }catch(e){}
+    if(d){
+        let o=null;
+        try{ o=JSON.parse(d); }catch(e){}
+        if(o && (!cur || o.ts > cur.ts)){
+            if(applySaved(o)){ calcAll(); fitAll(); }
+        }
+    }
+    if(!cur && !d) return;
+    idbPut(snapshot());
+});
+
+if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
+else setTimeout(fitAll, 500);
+</script>
+</body>
+</html>
