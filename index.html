@@ -508,7 +508,7 @@ window.setBlocks=function(id,v){
     n=Math.min(40,n); const cur=blocksOf(t);
     if(n>cur){
         const cl=[...t.rows].filter(function(r){return r.dataset.b==cur&&!r.dataset.t;}).map(function(r){return r.cells[1].textContent;});
-        for(let b=cur+1;b<=n;b++) t.tBodies[0].insertAdjacentHTML('beforeend', seatRows(b, cl.length?cl:[""]).map(trHTML).join(''));
+        for(let b=cur+1;b<=n;b++) t.insertAdjacentHTML('beforeend', seatRows(b, cl.length?cl:[""]).map(trHTML).join(''));
     } else if(n<cur){
         [...t.rows].filter(function(r){return +r.dataset.b>n;}).forEach(function(r){r.remove();});
     }
